@@ -23,8 +23,8 @@ const start = async () => {
         useCreateIndex: true,
       }
     );
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 
   app.listen(3000, () => console.log("Listening on Port 3000!!"));

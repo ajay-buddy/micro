@@ -12,8 +12,8 @@ const start = async () => {
     process.on("SIGTERM", () => natsWrapper.client.close());
 
     new OrganisationsListener(natsWrapper.client).listen();
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
