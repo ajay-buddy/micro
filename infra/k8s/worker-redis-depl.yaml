@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workers-redis-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workers-redis
+  template:
+    metadata:
+      labels:
+        app: workers-redis
+    spec:
+      containers:
+        - name: workers-redis
+          image:  redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  workers-redis-srv
+spec:
+  selector:
+    app:  workers-redis
+  ports:
+    - name:  workers-redis
+      protocol: TCP
+      port:  6379
+      targetPort:  6379

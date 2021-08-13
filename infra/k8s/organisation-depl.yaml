@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organisation-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: organisation
+  template:
+    metadata:
+      labels:
+        app: organisation
+    spec:
+      containers:
+        - name: organisation
+          image: otsofts/organisation
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret-key
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  organisation-srv
+spec:
+  selector:
+    app: organisation
+  ports:
+    - name:  organisation
+      protocol: TCP
+      port:  3000
+      targetPort:  3000

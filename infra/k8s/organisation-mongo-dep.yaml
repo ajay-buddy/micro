@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organisation-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: organisation-mongo
+  template:
+    metadata:
+      labels:
+        app: organisation-mongo
+    spec:
+      containers:
+        - name: organisation-mongo
+          image:  mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  organisation-mongo-srv
+spec:
+  selector:
+    app:  organisation-mongo
+  ports:
+    - name:  organisation-db
+      protocol: TCP
+      port:  27017
+      targetPort:  27017
