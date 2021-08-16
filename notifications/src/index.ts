@@ -8,7 +8,7 @@ const start = async () => {
     if (!process.env.JWT_KEY) {
       throw new Error("JWT KEY is not provided");
     }
-    await natsWrapper.connect("micro", "organisation", "http://nats-srv:4222");
+    await natsWrapper.connect("micro", "notifications", "http://nats-srv:4222");
     natsWrapper.client.on("close", () => {
       console.log("NATS connection closed!");
       process.exit();
@@ -16,7 +16,7 @@ const start = async () => {
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
     await mongoose.connect(
-      "mongodb://organisation-mongo-srv: 27017/organisation",
+      "mongodb://notifications-mongo-srv: 27017/notifications",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
