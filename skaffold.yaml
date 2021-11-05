@@ -15,21 +15,29 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
-            dest:  .
+          - src: "src/**/*.ts"
+            dest: .
     - image: otsofts/organisation
       context: organisation
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
-            dest:  .
+          - src: "src/**/*.ts"
+            dest: .
     - image: otsofts/workers
       context: workers
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/*.ts'
-            dest:  .
+          - src: "src/**/*.ts"
+            dest: .
+    - image: otsofts/chat
+      context: chat
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
